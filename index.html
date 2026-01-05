@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christophe Thill</title>
     <style>
+        :root {
+            --bg-gradient-start: #2d5016;
+            --bg-gradient-end: #8B4513;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #333;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --border-color: #2d5016;
+            --hover-color: #2d5016;
+        }
+        
+        [data-theme="dark"] {
+            --bg-gradient-start: #1a2f0a;
+            --bg-gradient-end: #5a2f0a;
+            --header-bg: rgba(30, 30, 30, 0.95);
+            --text-color: #f0f0f0;
+            --card-bg: rgba(40, 40, 40, 0.95);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --border-color: #4a7c2e;
+            --hover-color: #4a7c2e;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -14,19 +36,21 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #2d5016 0%, #8B4513 100%);
+            color: var(--text-color);
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
         }
         
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--header-bg);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px var(--shadow-color);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: background 0.3s ease;
         }
         
         nav {
@@ -41,7 +65,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #2d5016, #8B4513);
+            background: linear-gradient(45deg, var(--bg-gradient-start), var(--bg-gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -55,14 +79,14 @@
         
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: var(--text-color);
             font-weight: 500;
             transition: color 0.3s ease;
             position: relative;
         }
         
         .nav-links a:hover {
-            color: #2d5016;
+            color: var(--hover-color);
         }
         
         .nav-links a::after {
@@ -72,7 +96,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #2d5016, #8B4513);
+            background: linear-gradient(90deg, var(--border-color), var(--bg-gradient-end));
             transition: width 0.3s ease;
         }
         
@@ -87,13 +111,14 @@
         }
         
         .hero {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 4rem;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px var(--shadow-color);
             margin-bottom: 3rem;
+            transition: background 0.3s ease;
         }
         
         .profile-container {
@@ -110,20 +135,20 @@
             object-fit: cover;
             border: 5px solid transparent;
             background: linear-gradient(white, white) padding-box,
-                        linear-gradient(45deg, #2d5016, #8B4513) border-box;
-            box-shadow: 0 10px 30px rgba(45, 80, 22, 0.3);
+                        linear-gradient(45deg, var(--bg-gradient-start), var(--bg-gradient-end)) border-box;
+            box-shadow: 0 10px 30px var(--shadow-color);
         }
         
         .hero h1 {
             font-size: 3rem;
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 1rem;
             font-weight: 700;
         }
         
         .hero .subtitle {
             font-size: 1.5rem;
-            background: linear-gradient(45deg, #2d5016, #8B4513);
+            background: linear-gradient(45deg, var(--bg-gradient-start), var(--bg-gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -133,27 +158,62 @@
         
         .hero-description {
             font-size: 1.1rem;
-            color: #666;
+            color: var(--text-color);
+            opacity: 0.8;
             max-width: 600px;
             margin: 0 auto;
         }
         
         .section {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 3rem;
             margin-bottom: 2rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px var(--shadow-color);
+            transition: background 0.3s ease;
         }
         
         .section h2 {
-            color: #333;
+            color: var(--text-color);
             margin-bottom: 2rem;
             font-size: 2rem;
             border-bottom: 3px solid transparent;
-            border-image: linear-gradient(90deg, #2d5016, #8B4513) 1;
+            border-image: linear-gradient(90deg, var(--border-color), var(--bg-gradient-end)) 1;
             padding-bottom: 1rem;
+        }
+        
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: linear-gradient(45deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+        
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        [data-theme="dark"] .theme-toggle::after {
+            transform: translateX(30px);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.05);
         }
         
         @media (max-width: 768px) {
@@ -191,6 +251,7 @@
                 <li><a href="#cv">CV</a></li>
                 <li><a href="#projects">Projects</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
         </nav>
     </header>
     
@@ -229,5 +290,36 @@
             <p>This section will display your cloud computing projects and technical work.</p>
         </section>
     </main>
+    
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const theme = html.getAttribute('data-theme');
+            const newTheme = theme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
