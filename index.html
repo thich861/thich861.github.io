@@ -283,9 +283,10 @@
         <nav>
             <div class="logo" data-translate="logo">Portfolio</div>
             <ul class="nav-links">
-                <li><a href="#about" data-translate="nav_about">About myself</a></li>
+                <li><a href="#about" data-translate="nav_about">Home</a></li>
+                <li><a href="#work" data-translate="nav_work">Work/School</a></li>
                 <li><a href="#certificates" data-translate="nav_certificates">Certificates</a></li>
-                <li><a href="#cv" data-translate="nav_cv">CV</a></li>
+                <li><a href="#contact" data-translate="nav_contact">Contact</a></li>
                 <li><a href="#projects" data-translate="nav_projects">Projects</a></li>
             </ul>
             <div class="header-controls">
@@ -305,19 +306,23 @@
             <div class="profile-container">
                 <img src="Professionel Photo.jpg" alt="Profile Photo" class="profile-photo">
                 <div>
-                    <h1 data-translate="name">Christophe</h1>
+                    <h1 data-translate="name">Christophe THILL</h1>
                     <p class="subtitle" data-translate="title">Cloud Computing Student</p>
                     <p class="hero-description" data-translate="hero_description">
-                        Welcome to my portfolio! I'm passionate about cloud technologies and building innovative solutions. 
-                        Explore my journey, certifications, and projects below.
+                        I am a BTS Cloud Computing student at Lycée Guillaume Kroll in Luxembourg.
                     </p>
                 </div>
             </div>
         </section>
         
         <section id="about" class="section">
-            <h2 data-translate="about_title">About Myself</h2>
+            <h2 data-translate="about_title">Home</h2>
             <p data-translate="about_content">This section will contain information about your background, education, and interests in cloud computing.</p>
+        </section>
+        
+        <section id="work" class="section">
+            <h2 data-translate="work_title">Work/school</h2>
+            <p data-translate="work_content">This section will contain information about your work experience and educational background.</p>
         </section>
         
         <section id="certificates" class="section">
@@ -325,9 +330,9 @@
             <p data-translate="certificates_content">This section will showcase your cloud computing certifications and achievements.</p>
         </section>
         
-        <section id="cv" class="section">
-            <h2 data-translate="cv_title">CV</h2>
-            <p data-translate="cv_content">This section will contain your curriculum vitae or a link to download it.</p>
+        <section id="contact" class="section">
+            <h2 data-translate="contact_title">Contact</h2>
+            <p data-translate="contact_content">This section will contain your contact information and ways to reach you.</p>
         </section>
         
         <section id="projects" class="section">
@@ -341,73 +346,85 @@
         const translations = {
             en: {
                 logo: "Portfolio",
-                nav_about: "About myself",
+                nav_about: "Home",
+                nav_work: "Work/school",
                 nav_certificates: "Certificates",
-                nav_cv: "CV",
+                nav_contact: "Contact",
                 nav_projects: "Projects",
                 name: "Christophe",
                 title: "Cloud Computing Student",
                 hero_description: "Welcome to my portfolio! I'm passionate about cloud technologies and building innovative solutions. Explore my journey, certifications, and projects below.",
-                about_title: "About Myself",
+                about_title: "Home",
                 about_content: "This section will contain information about your background, education, and interests in cloud computing.",
+                work_title: "Work/school",
+                work_content: "This section will contain information about your work experience and educational background.",
                 certificates_title: "Certificates",
                 certificates_content: "This section will showcase your cloud computing certifications and achievements.",
-                cv_title: "CV",
-                cv_content: "This section will contain your curriculum vitae or a link to download it.",
+                contact_title: "Contact",
+                contact_content: "This section will contain your contact information and ways to reach you.",
                 projects_title: "Projects",
                 projects_content: "This section will display your cloud computing projects and technical work."
             },
             lb: {
                 logo: "Portfolio",
-                nav_about: "Iwwer mech",
+                nav_about: "Home",
+                nav_work: "Aarbecht/Schoul",
                 nav_certificates: "Zertifikater",
-                nav_cv: "CV",
+                nav_contact: "Kontakt",
                 nav_projects: "Projeten",
                 name: "Christophe",
                 title: "Cloud Computing Student",
                 hero_description: "Wëllkomm op mengem Portfolio! Ech sinn passionéiert fir Cloud Technologiën an d'Bau vun innovativen Léisungen. Entdeckt meng Rees, Zertifikater an Projeten hei ënnendrënner.",
-                about_title: "Iwwer mech",
+                about_title: "Home",
                 about_content: "Dës Sektioun enthält Informatiounen iwwert Ären Hannergrond, Äre Bildungswee an Är Interessen am Cloud Computing.",
+                work_title: "Aarbecht/Schoul",
+                work_content: "Dës Sektioun enthält Informatiounen iwwert Är Aarbechtserfarung an Äre Bildungswee.",
                 certificates_title: "Zertifikater",
                 certificates_content: "Dës Sektioun weist Äir Cloud Computing Zertifikater an Erfolleg.",
-                cv_title: "CV",
-                cv_content: "Dës Sektioun enthält Äre Curriculum Vitae oder e Link fir en erofzelueden.",
+                contact_title: "Kontakt",
+                contact_content: "Dës Sektioun enthält Är Kontaktinformatiounen an Weeër fir Iech ze kontaktéieren.",
                 projects_title: "Projeten",
                 projects_content: "Dës Sektioun weist Äir Cloud Computing Projeten an technesch Aarbechten."
             },
             de: {
                 logo: "Portfolio",
-                nav_about: "Über mich",
+                nav_about: "Home",
+                nav_work: "Arbeit/Schule",
                 nav_certificates: "Zertifikate",
-                nav_cv: "CV",
+                nav_contact: "Kontakt",
                 nav_projects: "Projekte",
                 name: "Christophe",
                 title: "Cloud Computing Student",
                 hero_description: "Willkommen auf meinem Portfolio! Ich bin leidenschaftlich für Cloud-Technologien und den Bau innovativer Lösungen. Entdecken Sie meine Reise, Zertifikate und Projekte unten.",
-                about_title: "Über mich",
+                about_title: "Home",
                 about_content: "Dieser Abschnitt enthält Informationen über Ihren Hintergrund, Ihre Ausbildung und Ihre Interessen im Cloud Computing.",
+                work_title: "Arbeit/Schule",
+                work_content: "Dieser Abschnitt enthält Informationen über Ihre Berufserfahrung und Ihren Bildungsweg.",
                 certificates_title: "Zertifikate",
                 certificates_content: "Dieser Abschnitt zeigt Ihre Cloud Computing Zertifikate und Erfolge.",
-                cv_title: "CV",
-                cv_content: "Dieser Abschnitt enthält Ihren Lebenslauf oder einen Link zum Herunterladen.",
+                contact_title: "Kontakt",
+                contact_content: "Dieser Abschnitt enthält Ihre Kontaktinformationen und Wege, Sie zu erreichen.",
                 projects_title: "Projekte",
                 projects_content: "Dieser Abschnitt zeigt Ihre Cloud Computing Projekte und technischen Arbeiten."
             },
             fr: {
                 logo: "Portfolio",
-                nav_about: "À propos de moi",
+                nav_about: "Home",
+                nav_work: "Travail/École",
                 nav_certificates: "Certificats",
-                nav_cv: "CV",
+                nav_contact: "Contact",
                 nav_projects: "Projets",
                 name: "Christophe",
                 title: "Étudiant en Cloud Computing",
                 hero_description: "Bienvenue sur mon portfolio ! Je suis passionné par les technologies cloud et la construction de solutions innovantes. Découvrez mon parcours, mes certificats et mes projets ci-dessous.",
-                about_title: "À propos de moi",
+                about_title: "Home",
                 about_content: "Cette section contiendra des informations sur votre parcours, votre éducation et vos intérêts en cloud computing.",
+                work_title: "Travail/École",
+                work_content: "Cette section contiendra des informations sur votre expérience professionnelle et votre parcours éducatif.",
                 certificates_title: "Certificats",
                 certificates_content: "Cette section présentera vos certificats et réalisations en cloud computing.",
-                cv_title: "CV",
-                cv_content: "Cette section contiendra votre curriculum vitae ou un lien pour le télécharger.",
+                contact_title: "Contact",
+                contact_content: "Cette section contiendra vos coordonnées et les moyens de vous contacter.",
                 projects_title: "Projets",
                 projects_content: "Cette section affichera vos projets et travaux techniques en cloud computing."
             }
