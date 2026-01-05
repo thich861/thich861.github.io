@@ -216,6 +216,43 @@
             transform: scale(1.05);
         }
         
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+        
+        .lang-btn {
+            padding: 0.3rem 0.6rem;
+            background: transparent;
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-color);
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .lang-btn:hover {
+            background: var(--border-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .lang-btn.active {
+            background: linear-gradient(45deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            color: white;
+            border-color: transparent;
+        }
+        
         @media (max-width: 768px) {
             .nav-links {
                 flex-direction: column;
@@ -244,14 +281,22 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Portfolio</div>
+            <div class="logo" data-translate="logo">Portfolio</div>
             <ul class="nav-links">
-                <li><a href="#about">About myself</a></li>
-                <li><a href="#certificates">Certificates</a></li>
-                <li><a href="#cv">CV</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about" data-translate="nav_about">About myself</a></li>
+                <li><a href="#certificates" data-translate="nav_certificates">Certificates</a></li>
+                <li><a href="#cv" data-translate="nav_cv">CV</a></li>
+                <li><a href="#projects" data-translate="nav_projects">Projects</a></li>
             </ul>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+            <div class="header-controls">
+                <div class="language-switcher">
+                    <button class="lang-btn" data-lang="lb">LB</button>
+                    <button class="lang-btn" data-lang="de">DE</button>
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="fr">FR</button>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+            </div>
         </nav>
     </header>
     
@@ -260,9 +305,9 @@
             <div class="profile-container">
                 <img src="Professionel Photo.jpg" alt="Profile Photo" class="profile-photo">
                 <div>
-                    <h1>Christophe</h1>
-                    <p class="subtitle">Cloud Computing Student</p>
-                    <p class="hero-description">
+                    <h1 data-translate="name">Christophe</h1>
+                    <p class="subtitle" data-translate="title">Cloud Computing Student</p>
+                    <p class="hero-description" data-translate="hero_description">
                         Welcome to my portfolio! I'm passionate about cloud technologies and building innovative solutions. 
                         Explore my journey, certifications, and projects below.
                     </p>
@@ -271,27 +316,103 @@
         </section>
         
         <section id="about" class="section">
-            <h2>About Myself</h2>
-            <p>This section will contain information about your background, education, and interests in cloud computing.</p>
+            <h2 data-translate="about_title">About Myself</h2>
+            <p data-translate="about_content">This section will contain information about your background, education, and interests in cloud computing.</p>
         </section>
         
         <section id="certificates" class="section">
-            <h2>Certificates</h2>
-            <p>This section will showcase your cloud computing certifications and achievements.</p>
+            <h2 data-translate="certificates_title">Certificates</h2>
+            <p data-translate="certificates_content">This section will showcase your cloud computing certifications and achievements.</p>
         </section>
         
         <section id="cv" class="section">
-            <h2>CV</h2>
-            <p>This section will contain your curriculum vitae or a link to download it.</p>
+            <h2 data-translate="cv_title">CV</h2>
+            <p data-translate="cv_content">This section will contain your curriculum vitae or a link to download it.</p>
         </section>
         
         <section id="projects" class="section">
-            <h2>Projects</h2>
-            <p>This section will display your cloud computing projects and technical work.</p>
+            <h2 data-translate="projects_title">Projects</h2>
+            <p data-translate="projects_content">This section will display your cloud computing projects and technical work.</p>
         </section>
     </main>
     
     <script>
+        // Translation content for all languages
+        const translations = {
+            en: {
+                logo: "Portfolio",
+                nav_about: "About myself",
+                nav_certificates: "Certificates",
+                nav_cv: "CV",
+                nav_projects: "Projects",
+                name: "Christophe",
+                title: "Cloud Computing Student",
+                hero_description: "Welcome to my portfolio! I'm passionate about cloud technologies and building innovative solutions. Explore my journey, certifications, and projects below.",
+                about_title: "About Myself",
+                about_content: "This section will contain information about your background, education, and interests in cloud computing.",
+                certificates_title: "Certificates",
+                certificates_content: "This section will showcase your cloud computing certifications and achievements.",
+                cv_title: "CV",
+                cv_content: "This section will contain your curriculum vitae or a link to download it.",
+                projects_title: "Projects",
+                projects_content: "This section will display your cloud computing projects and technical work."
+            },
+            lb: {
+                logo: "Portfolio",
+                nav_about: "Iwwer mech",
+                nav_certificates: "Zertifikater",
+                nav_cv: "CV",
+                nav_projects: "Projeten",
+                name: "Christophe",
+                title: "Cloud Computing Student",
+                hero_description: "Wëllkomm op mengem Portfolio! Ech sinn passionéiert fir Cloud Technologiën an d'Bau vun innovativen Léisungen. Entdeckt meng Rees, Zertifikater an Projeten hei ënnendrënner.",
+                about_title: "Iwwer mech",
+                about_content: "Dës Sektioun enthält Informatiounen iwwert Ären Hannergrond, Äre Bildungswee an Är Interessen am Cloud Computing.",
+                certificates_title: "Zertifikater",
+                certificates_content: "Dës Sektioun weist Äir Cloud Computing Zertifikater an Erfolleg.",
+                cv_title: "CV",
+                cv_content: "Dës Sektioun enthält Äre Curriculum Vitae oder e Link fir en erofzelueden.",
+                projects_title: "Projeten",
+                projects_content: "Dës Sektioun weist Äir Cloud Computing Projeten an technesch Aarbechten."
+            },
+            de: {
+                logo: "Portfolio",
+                nav_about: "Über mich",
+                nav_certificates: "Zertifikate",
+                nav_cv: "CV",
+                nav_projects: "Projekte",
+                name: "Christophe",
+                title: "Cloud Computing Student",
+                hero_description: "Willkommen auf meinem Portfolio! Ich bin leidenschaftlich für Cloud-Technologien und den Bau innovativer Lösungen. Entdecken Sie meine Reise, Zertifikate und Projekte unten.",
+                about_title: "Über mich",
+                about_content: "Dieser Abschnitt enthält Informationen über Ihren Hintergrund, Ihre Ausbildung und Ihre Interessen im Cloud Computing.",
+                certificates_title: "Zertifikate",
+                certificates_content: "Dieser Abschnitt zeigt Ihre Cloud Computing Zertifikate und Erfolge.",
+                cv_title: "CV",
+                cv_content: "Dieser Abschnitt enthält Ihren Lebenslauf oder einen Link zum Herunterladen.",
+                projects_title: "Projekte",
+                projects_content: "Dieser Abschnitt zeigt Ihre Cloud Computing Projekte und technischen Arbeiten."
+            },
+            fr: {
+                logo: "Portfolio",
+                nav_about: "À propos de moi",
+                nav_certificates: "Certificats",
+                nav_cv: "CV",
+                nav_projects: "Projets",
+                name: "Christophe",
+                title: "Étudiant en Cloud Computing",
+                hero_description: "Bienvenue sur mon portfolio ! Je suis passionné par les technologies cloud et la construction de solutions innovantes. Découvrez mon parcours, mes certificats et mes projets ci-dessous.",
+                about_title: "À propos de moi",
+                about_content: "Cette section contiendra des informations sur votre parcours, votre éducation et vos intérêts en cloud computing.",
+                certificates_title: "Certificats",
+                certificates_content: "Cette section présentera vos certificats et réalisations en cloud computing.",
+                cv_title: "CV",
+                cv_content: "Cette section contiendra votre curriculum vitae ou un lien pour le télécharger.",
+                projects_title: "Projets",
+                projects_content: "Cette section affichera vos projets et travaux techniques en cloud computing."
+            }
+        };
+
         const themeToggle = document.getElementById('themeToggle');
         const html = document.documentElement;
         
@@ -306,6 +427,43 @@
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
+
+        // Language switching functionality
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const currentLang = localStorage.getItem('language') || 'en';
+        
+        // Set initial language
+        setLanguage(currentLang);
+        
+        // Add click handlers to language buttons
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.getAttribute('data-lang');
+                setLanguage(lang);
+                localStorage.setItem('language', lang);
+                
+                // Update active button
+                langButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+        
+        function setLanguage(lang) {
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update page title
+            document.title = translations[lang].name + ' - ' + translations[lang].logo;
+            
+            // Update active button
+            langButtons.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+        }
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
