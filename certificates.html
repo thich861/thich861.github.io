@@ -16,17 +16,6 @@
             --hover-color: #2d5016;
         }
 
-        [data-theme="dark"] {
-            --bg-gradient-start: #1a2f0a;
-            --bg-gradient-end: #5a2f0a;
-            --header-bg: rgba(30, 30, 30, 0.95);
-            --text-color: #f0f0f0;
-            --card-bg: rgba(40, 40, 40, 0.95);
-            --shadow-color: rgba(0, 0, 0, 0.3);
-            --border-color: #4a7c2e;
-            --hover-color: #4a7c2e;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -97,39 +86,6 @@
             background: var(--border-color);
             color: white;
             transform: translateY(-2px);
-        }
-
-        .theme-toggle {
-            position: relative;
-            width: 56px;
-            height: 30px;
-            background: linear-gradient(45deg, var(--bg-gradient-start), var(--bg-gradient-end));
-            border-radius: 15px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            border: none;
-            outline: none;
-        }
-
-        .theme-toggle::after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 24px;
-            height: 24px;
-            background: white;
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        [data-theme="dark"] .theme-toggle::after {
-            transform: translateX(26px);
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.05);
         }
 
         main {
@@ -229,7 +185,6 @@
             <div class="logo">Portfolio</div>
             <div class="nav-actions">
                 <a class="btn-link" href="index.html#certificates">Back to Home</a>
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
             </div>
         </nav>
     </header>
@@ -255,19 +210,5 @@
         </section>
     </main>
 
-    <script>
-        const themeToggle = document.getElementById('themeToggle');
-        const html = document.documentElement;
-
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        html.setAttribute('data-theme', currentTheme);
-
-        themeToggle.addEventListener('click', () => {
-            const theme = html.getAttribute('data-theme');
-            const newTheme = theme === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-    </script>
 </body>
 </html>
