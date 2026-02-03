@@ -114,6 +114,26 @@
             margin-bottom: 1.75rem;
         }
 
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .filter-item input {
+            width: 18px;
+            height: 18px;
+        }
+
         .certificates-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -194,27 +214,67 @@
             <h1>All certificates</h1>
             <p>Click a certificate to open the image.</p>
 
+            <div class="filter-bar" aria-label="Certificate filters">
+                <label class="filter-item">
+                    <input type="checkbox" name="certTag" value="school" checked>
+                    School
+                </label>
+                <label class="filter-item">
+                    <input type="checkbox" name="certTag" value="personal">
+                    Personal
+                </label>
+            </div>
+
             <div class="certificates-grid">
-                <a href="https://www.credly.com/badges/40cc581f-e198-4391-8a73-972e3a78a764/public_url" target="_blank" rel="noopener noreferrer" class="certificate-card">
+                <a href="https://www.credly.com/badges/40cc581f-e198-4391-8a73-972e3a78a764/public_url" target="_blank" rel="noopener noreferrer" class="certificate-card" data-tags="school">
                     <img src="documents/Certificates/PPT-Certification.png" alt="Microsoft Office Specialist PowerPoint Associate" class="certificate-logo">
                     <h3 class="certificate-title">PowerPoint Associate</h3>
                     <p class="certificate-issuer">Microsoft Office Specialist</p>
                 </a>
 
-                <a href="https://www.credly.com/badges/5cc034f1-e3fa-43f3-b881-da6dc6c5fc48/public_url" target="_blank" rel="noopener noreferrer" class="certificate-card">
+                <a href="https://www.credly.com/badges/5cc034f1-e3fa-43f3-b881-da6dc6c5fc48/public_url" target="_blank" rel="noopener noreferrer" class="certificate-card" data-tags="school">
                     <img src="documents/Certificates/Word-certificate.png" alt="Microsoft Office Specialist Word Associate" class="certificate-logo">
                     <h3 class="certificate-title">Word Associate</h3>
                     <p class="certificate-issuer">Microsoft Office Specialist</p>
                 </a>
 
-                <a href="https://www.credly.com/badges/9289e85b-fc01-4d4d-a8fc-844f2a2d8228/public_url" target="_blank" rel="noopener noreferrer" class="certificate-card">
+                <a href="https://www.credly.com/badges/9289e85b-fc01-4d4d-a8fc-844f2a2d8228/public_url" target="_blank" rel="noopener noreferrer" class="certificate-card" data-tags="school">
                     <img src="documents/Certificates/AZ900-Certification.png" alt="Microsoft Certified: Azure Fundamentals" class="certificate-logo">
                     <h3 class="certificate-title">Azure Fundamentals</h3>
                     <p class="certificate-issuer">Microsoft Certified</p>
+                </a>
+
+                <a href="https://www.credly.com/badges/52e795c8-6704-42b7-97ed-966b4e7b51a5/public_url" target="_blank" rel="noopener noreferrer" class="certificate-card" data-tags="school">
+                    <img src="documents/Certificates/Word-certification-Expert.png" alt="Microsoft Office Specialist Word Expert" class="certificate-logo">
+                    <h3 class="certificate-title">Word Expert</h3>
+                    <p class="certificate-issuer">Microsoft Office Specialist</p>
                 </a>
             </div>
         </section>
     </main>
 
-</body>
-</html>
+    <script>
+        const filterInputs = Array.from(document.querySelectorAll('input[name="certTag"]'));
+        const certificateCards = Array.from(document.querySelectorAll('.certificate-card'));
+
+        function applyCertificateFilters() {
+            const activeFilters = filterInputs
+                .filter((input) => input.checked)
+                .map((input) => input.value);
+
+            certificateCards.forEach((card) => {
+                const tags = (card.dataset.tags || '').split(' ').filter(Boolean);
+                const shouldShow = activeFilters.length === 0 || activeFilters.some((filter) => tags.includes(filter));
+                card.style.display = shouldShow ? '' : 'none';
+            });
+        }
+
+        filterInputs.forEach((input) => {
+            input.addEventListener('change', applyCertificateFilters);
+        });
+
+        applyCertificateFilters();
+    </script>
+
+ </body>
+ </html>
