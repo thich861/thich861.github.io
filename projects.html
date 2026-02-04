@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WSUS Project - Christophe THILL</title>
+    <title>Projects - Christophe THILL</title>
     <style>
         :root {
             --bg-gradient-start: #2d5016;
@@ -64,6 +64,8 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .btn-link {
@@ -100,47 +102,51 @@
             box-shadow: 0 20px 40px var(--shadow-color);
         }
 
-        .project-header {
-            display: flex;
-            align-items: center;
+        .section h1 {
+            margin-bottom: 0.75rem;
+            font-size: 2.25rem;
+        }
+
+        .section p {
+            opacity: 0.8;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.25rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.25rem;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            display: grid;
+            justify-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px var(--shadow-color);
+        }
+
+        .project-card h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            text-align: center;
         }
 
         .project-logo {
-            width: 96px;
-            height: 96px;
+            width: 120px;
+            height: 120px;
             object-fit: contain;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px var(--shadow-color);
-            background: rgba(255, 255, 255, 0.75);
-            padding: 0.5rem;
-        }
-
-        h1 {
-            font-size: 2.25rem;
-            line-height: 1.2;
-        }
-
-        .muted {
-            opacity: 0.8;
-            margin-top: 0.25rem;
-        }
-
-        .content {
-            display: grid;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .content h2 {
-            font-size: 1.4rem;
-            margin-top: 0.75rem;
-        }
-
-        .content p {
-            opacity: 0.9;
+            border-radius: 14px;
         }
 
         @media (max-width: 768px) {
@@ -152,7 +158,7 @@
                 padding: 2rem;
             }
 
-            h1 {
+            .section h1 {
                 font-size: 1.8rem;
             }
 
@@ -175,24 +181,29 @@
 
     <main>
         <section class="section">
-            <div class="project-header">
-                <img class="project-logo" src="documents/WSUS-logo.jpg" alt="WSUS logo">
-                <div>
-                    <h1>Windows Server Update Services (WSUS)</h1>
-                    <p class="muted">Project details page</p>
-                </div>
-            </div>
+            <h1>All projects</h1>
+            <p>Click a project to open the details page.</p>
 
-            <div class="content">
-                <h2>Overview</h2>
-                <p>In this project I installed and configured the Windows Server Update Service.
-                    For this I used a Windows Server 2022 virtual machine in which I installed the WSUS, the Active Directory, and the Group Policy roles.
-                    I then configured the WSUS to download updates from Microsoft. I configured a new Group Policy, so that the client computers would download updates from the WSUS server instate from Microsoft.
-                    I applied this Group Policy to the client computers, which are in the Active Directory domain.
-                </p>
+            <div class="projects-grid">
+                <a class="project-card" href="project-wsus.html">
+                    <img class="project-logo" src="documents/WSUS-logo.jpg" alt="WSUS logo">
+                    <h3>Windows Server Update Services</h3>
+                </a>
 
-                <h2>Technical Documentation</h2>
-                <p><a href="documents/Project-Documentation.pdf" target="_blank" rel="noopener noreferrer">Project Documentation</a></p>
+                <a class="project-card" href="project-troubleshoot.html">
+                    <img class="project-logo" src="documents/Cisco-Packet-Tracer.webp" alt="Cisco Packet Tracer logo">
+                    <h3>Troubleshoot Connectivity Issues</h3>
+                </a>
+
+                <a class="project-card" href="project-power-apps.html">
+                    <img class="project-logo" src="documents/power-apps.webp" alt="Power Apps logo">
+                    <h3>Microsoft Power Apps: One Piece card collection</h3>
+                </a>
+
+                <a class="project-card" href="log-analyser.html">
+                    <img class="project-logo" src="documents/Python-logo.svg.png" alt="Python logo">
+                    <h3>Log Analyser</h3>
+                </a>
             </div>
         </section>
     </main>
