@@ -167,8 +167,8 @@
         <nav>
             <div class="logo">Portfolio</div>
             <div class="nav-actions">
-                <a class="btn-link" href="index.html#projects">Back to Projects</a>
                 <a class="btn-link" href="index.html#home">Home</a>
+                <a class="btn-link" href="index.html#projects">Back to Projects</a>
             </div>
         </nav>
     </header>
@@ -178,20 +178,21 @@
             <div class="project-header">
                 <img class="project-logo" src="documents/WSUS-logo.jpg" alt="WSUS logo">
                 <div>
-                    <h1>WSUS</h1>
+                    <h1>Windows Server Update Services (WSUS)</h1>
                     <p class="muted">Project details page</p>
                 </div>
             </div>
 
             <div class="content">
                 <h2>Overview</h2>
-                <p>This page contains the details for my WSUS project.</p>
+                <p>In this project I installed and configured the Windows Server Update Service.
+                    For this I used a Windows Server 2022 virtual machine in which I installed the WSUS, the Active Directory, and the Group Policy roles.
+                    I then configured the WSUS to download updates from Microsoft. I configured a new Group Policy, so that the client computers would download updates from the WSUS server instate from Microsoft.
+                    I applied this Group Policy to the client computers, which are in the Active Directory domain.
+                </p>
 
-                <h2>Details</h2>
-                <p>Write your project description here (goal, what you built, and what you learned).</p>
-
-                <h2>Technologies</h2>
-                <p>Add the tools/technologies you used here.</p>
+                <h2>Technical Documentation</h2>
+                <p><a href="documents/WSUS-Documentation.pdf" target="_blank" rel="noopener noreferrer">Dokument Project desciption + Documentation</a></p>
             </div>
         </section>
     </main>
