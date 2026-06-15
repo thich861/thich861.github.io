@@ -384,7 +384,8 @@
             skills: [
                 { name: "Azure", level: 75 },
                 { name: "Windows Server", level: 80 },
-                { name: "Networking", level: 65 }
+                { name: "Networking", level: 65 },
+                { name: "Python", level: 70, img: "documents/Python-logo.svg.png" }
             ],
             certificates: [
                 {
@@ -450,6 +451,7 @@
 
             document.getElementById('skills-grid').innerHTML = (d.skills || []).map(s => `
                 <div class="card">
+                    <img src="${s.img || ''}" alt="${s.name}" onerror="this.style.display='none'">
                     <h3>${s.name}</h3>
                     <div class="skill-level"><div class="skill-bar" style="width:${s.level}%"></div></div>
                     <small>${s.level}%</small>
