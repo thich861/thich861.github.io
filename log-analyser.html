@@ -87,6 +87,8 @@
         .content { display: grid; gap: 1rem; margin-top: 1rem; }
         .content h2 { font-size: 1.4rem; margin-top: 0.75rem; }
         .content p { opacity: 0.9; }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+        .tag { padding: 0.3rem 0.75rem; border-radius: 999px; border: 1px solid var(--border-color); font-size: 0.82rem; font-weight: 600; color: var(--border-color); }
         @media (max-width: 768px) {
             main { padding: 110px 1rem 1rem; }
             .section { padding: 2rem; }
@@ -115,6 +117,11 @@
                 </div>
             </div>
             <div class="content">
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Regular Expressions</span>
+                    <span class="tag">File I/O</span>
+                </div>
                 <h2>Overview</h2>
                 <p>In this project I used Python to analyse log files from a game.
                     The goal of the project is to extract information from the log file using regular expressions and to display the extracted information.

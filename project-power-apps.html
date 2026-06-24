@@ -87,6 +87,8 @@
         .content { display: grid; gap: 1rem; margin-top: 1rem; }
         .content h2 { font-size: 1.4rem; margin-top: 0.75rem; }
         .content p { opacity: 0.9; }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+        .tag { padding: 0.3rem 0.75rem; border-radius: 999px; border: 1px solid var(--border-color); font-size: 0.82rem; font-weight: 600; color: var(--border-color); }
         @media (max-width: 768px) {
             main { padding: 110px 1rem 1rem; }
             .section { padding: 2rem; }
@@ -115,6 +117,13 @@
                 </div>
             </div>
             <div class="content">
+                <div class="tags">
+                    <span class="tag">Power Apps</span>
+                    <span class="tag">Power Automate</span>
+                    <span class="tag">Excel</span>
+                    <span class="tag">AI Builder</span>
+                    <span class="tag">Microsoft 365</span>
+                </div>
                 <h2>Overview</h2>
                 <p>In this project I used Power Apps to create a simple app that allows users to manage their One Piece collection.
                     This App uses an Excel file as a database, which stores the data of the cards and how many of each card the user has.
