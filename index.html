@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christophe Thill</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --bg-start: #2d5016;
@@ -215,6 +216,28 @@
             background: linear-gradient(90deg, var(--bg-start), var(--bg-end));
         }
 
+        .skill-group { margin-bottom: 1.75rem; }
+        .skill-group:last-child { margin-bottom: 0; }
+        .skill-group-header {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+        .skill-items { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-chip {
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            border: 1.5px solid var(--accent);
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text);
+            background: rgba(45,80,22,0.06);
+        }
+
         .section-actions {
             margin-top: 1.5rem;
             display: flex;
@@ -324,7 +347,7 @@
 
         <section id="skills" class="section">
             <h2>Skills</h2>
-            <div class="grid" id="skills-grid"></div>
+            <div id="skills-grid"></div>
         </section>
 
         <section id="certificates" class="section">
@@ -381,10 +404,26 @@
                 cvLink: "aboutMe-CV.html"
             },
             skills: [
-                { name: "Azure", level: 75 },
-                { name: "Windows Server", level: 80 },
-                { name: "Networking", level: 65 },
-                { name: "Python", level: 70, img: "documents/Python-logo.svg.png" }
+                { name: "Microsoft Azure",          category: "cloud" },
+                { name: "Docker / Compose",         category: "cloud" },
+                { name: "Proxmox / ESXi",           category: "virtualization" },
+                { name: "VirtualBox",               category: "virtualization" },
+                { name: "Linux",                    category: "systems" },
+                { name: "Windows Server",           category: "systems" },
+                { name: "Computer & Server Hardware", category: "systems" },
+                { name: "Cisco Packet Tracer",      category: "networking" },
+                { name: "DHCP",                     category: "networking" },
+                { name: "Bash",                     category: "scripting" },
+                { name: "PowerShell",               category: "scripting" },
+                { name: "Python",                   category: "programming" },
+                { name: "Java",                     category: "programming" },
+                { name: "Microsoft Word",           category: "office" },
+                { name: "Microsoft PowerPoint",     category: "office" },
+                { name: "SCRUM / KanBan",           category: "management" },
+                { name: "MS Planner",               category: "management" },
+                { name: "Documentation",            category: "management" },
+                { name: "Power Apps",               category: "other" },
+                { name: "Power Automate",           category: "other" }
             ],
             certificates: [
                 {
@@ -433,7 +472,12 @@
         function getData() {
             try {
                 const stored = localStorage.getItem('portfolioData');
-                return stored ? JSON.parse(stored) : DEFAULTS;
+                if (!stored) return DEFAULTS;
+                const data = JSON.parse(stored);
+                if (!data.skills?.length || !data.skills.some(s => s.category)) {
+                    data.skills = DEFAULTS.skills;
+                }
+                return data;
             } catch {
                 return DEFAULTS;
             }
@@ -448,14 +492,27 @@
             document.getElementById('profile-photo').src = d.hero.photo;
             document.getElementById('cv-link').href = d.hero.cvLink;
 
-            document.getElementById('skills-grid').innerHTML = (d.skills || []).map(s => `
-                <div class="card">
-                    <img src="${s.img || ''}" alt="${s.name}" onerror="this.style.display='none'">
-                    <h3>${s.name}</h3>
-                    <div class="skill-level"><div class="skill-bar" style="width:${s.level}%"></div></div>
-                    <small>${s.level}%</small>
-                </div>
-            `).join('');
+            const SKILL_GROUPS = [
+                { key: 'cloud',          label: 'Cloud',          icon: 'fa-solid fa-cloud' },
+                { key: 'virtualization', label: 'Virtualization', icon: 'fa-solid fa-layer-group' },
+                { key: 'systems',        label: 'Systems',        icon: 'fa-solid fa-server' },
+                { key: 'networking',     label: 'Networking',     icon: 'fa-solid fa-network-wired' },
+                { key: 'scripting',      label: 'Scripting',      icon: 'fa-solid fa-terminal' },
+                { key: 'programming',    label: 'Programming',    icon: 'fa-solid fa-code' },
+                { key: 'office',         label: 'Office',         icon: 'fa-solid fa-briefcase' },
+                { key: 'management',     label: 'Management',     icon: 'fa-solid fa-list-check' },
+                { key: 'other',          label: 'Other',          icon: 'fa-solid fa-circle-nodes' }
+            ];
+            const allSkills = d.skills || [];
+            document.getElementById('skills-grid').innerHTML = SKILL_GROUPS.map(g => {
+                const group = allSkills.filter(s => s.category === g.key);
+                if (!group.length) return '';
+                return `
+                    <div class="skill-group">
+                        <div class="skill-group-header"><i class="${g.icon}"></i> ${g.label}</div>
+                        <div class="skill-items">${group.map(s => `<span class="skill-chip">${s.name}</span>`).join('')}</div>
+                    </div>`;
+            }).join('');
 
             document.getElementById('certificates-grid').innerHTML = (d.certificates || []).map(c => `
                 <a href="${c.link}" target="_blank" rel="noopener noreferrer" class="card">
