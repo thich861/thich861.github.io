@@ -457,7 +457,10 @@
                 { title: "Windows Server Update Services", img: "documents/WSUS-logo.jpg", link: "project-wsus.html" }
             ],
             workshops: [
-                { name: "Workshop 1", description: "" }
+                { name: "AZ-900", teacher: "Xavier Nix", description: "" },
+                { name: "AZ-040", teacher: "Xavier Nix", description: "" },
+                { name: "Architecture AWS", teacher: "Charlier Arnaud", description: "" },
+                { name: "Project Management & Intro to Work Life", teacher: "Jager Jamey", description: "KPI, OKR, GTD methodologies and introduction to professional work life" }
             ],
             school: {
                 name: "Lycée Guillaume Kroll",
@@ -538,6 +541,7 @@
             document.getElementById('workshops-grid').innerHTML = (d.workshops || []).map(w => `
                 <div class="card">
                     <h3>${w.name}</h3>
+                    ${w.teacher ? `<p style="font-weight:600;opacity:0.75;font-size:0.85rem;">${w.teacher}</p>` : ''}
                     ${w.description ? `<p>${w.description}</p>` : ''}
                 </div>
             `).join('');
