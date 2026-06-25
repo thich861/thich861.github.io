@@ -449,10 +449,10 @@
                 }
             ],
             projects: [
-                { title: "VIRCL — Hypervisor & VM Backup", img: "", link: "project-vircl.html" },
+                { title: "VIRCL — Hypervisor & VM Backup", imgs: ["documents/proxmox-logo.png", "documents/esxi-logo.jpg"], link: "project-vircl.html" },
                 { title: "AZ-104 — Azure Web Infrastructure", img: "documents/Certificates/AZ900-Certification.png", link: "project-az104.html" },
-                { title: "NAS Setup — OpenMediaVault", img: "", link: "project-nas.html" },
-                { title: "Relais pour la Vie — Spinning Contraption", img: "", link: "project-spinning.html" },
+                { title: "NAS Setup — OpenMediaVault", img: "documents/openmediavault_logo.png", link: "project-nas.html" },
+                { title: "Relais pour la Vie — Spinning Contraption", img: "documents/RelaispourlaVie_Logo.png", link: "project-spinning.html" },
                 { title: "Windows Server Update Services", img: "documents/WSUS-logo.jpg", link: "project-wsus.html" }
             ],
             workshops: [
@@ -532,12 +532,12 @@
                 </a>
             `).join('');
 
-            document.getElementById('projects-grid').innerHTML = (d.projects || []).map(p => `
-                <a href="${p.link}" class="card">
-                    <img src="${p.img}" alt="${p.title}" onerror="this.style.display='none'">
-                    <h3>${p.title}</h3>
-                </a>
-            `).join('');
+            document.getElementById('projects-grid').innerHTML = (d.projects || []).map(p => {
+                const logoHtml = p.imgs
+                    ? `<div style="display:flex;gap:0.4rem;align-items:center;justify-content:center;">${p.imgs.map(src => `<img src="${src}" alt="${p.title}" style="width:60px;height:60px;object-fit:contain;border-radius:8px;" onerror="this.style.display='none'">`).join('')}</div>`
+                    : p.img ? `<img src="${p.img}" alt="${p.title}" onerror="this.style.display='none'">` : '';
+                return `<a href="${p.link}" class="card">${logoHtml}<h3>${p.title}</h3></a>`;
+            }).join('');
 
             document.getElementById('workshops-grid').innerHTML = (d.workshops || []).map(w => `
                 <div class="card">
